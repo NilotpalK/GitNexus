@@ -69,6 +69,7 @@ jobs:
         if: >
           github.event_name == 'schedule' &&
           steps.readiness.outputs.exit_code != '0'
+        continue-on-error: true # Issues may be disabled in forks
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         env:
           REPORT: ${{ steps.readiness.outputs.report }}
@@ -152,6 +153,7 @@ jobs:
         if: >
           github.event_name == 'schedule' &&
           steps.readiness.outputs.exit_code == '0'
+        continue-on-error: true # Issues may be disabled in forks
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           script: |
